@@ -5,6 +5,8 @@
  */
 package com.home.limitcalculation.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.home.limitcalculation.utility.LocalDateHandler;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -15,6 +17,7 @@ import java.time.LocalDate;
 public class Client {
 
     long idClient;
+    @JsonDeserialize(using = LocalDateHandler.class)
     LocalDate dateBirthday;
     String phone;
     String mail;
@@ -113,6 +116,11 @@ public class Client {
 
     public void setRequestLimit(double requestLimit) {
         this.requestLimit = requestLimit;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" + "idClient=" + idClient + ", dateBirthday=" + dateBirthday + ", phone=" + phone + ", mail=" + mail + ", address=" + address + ", monthSalary=" + monthSalary + ", currSalary=" + currSalary + ", requestLimit=" + requestLimit + '}';
     }
 
 }

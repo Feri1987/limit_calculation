@@ -5,7 +5,7 @@
  */
 package com.home.limitcalculation.main;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.home.limitcalculation.entity.Client;
 import com.home.limitcalculation.service.Calculation;
 import java.io.BufferedReader;
@@ -37,11 +37,12 @@ public class MainServiceClass extends HttpServlet {
             e.printStackTrace();
         }
 
-        Gson gson = new Gson();
-        Client client = gson.fromJson(obj.toString(), Client.class);
+        ObjectMapper mapper = new ObjectMapper();
+        Client client = mapper.readValue(obj.toString(), Client.class);
 
         if (client.getIdClient() != 0 && client.getMonthSalary() != null && client.getCurrSalary() != null && client.getPhone() != null && client.getDateBirthday() != null) {
             Calculation calculation = new Calculation(client);
+            calculation.calculateAll();
         } else {
             resp.sendError(400);
         }

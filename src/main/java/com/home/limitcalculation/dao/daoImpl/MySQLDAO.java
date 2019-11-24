@@ -14,7 +14,7 @@ import com.home.limitcalculation.dao.AbstractCreditDAO;
 public abstract class MySQLDAO extends AbstractCreditDAO {
 
     public MySQLDAO() {
-        super("jdbc:mysql://localhost:3306/credit_calc",
+        super("jdbc:mysql://localhost:3306/credit_calc?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
                 "root",
                 "1234",
                 "com.mysql.cj.jdbc.Driver");
